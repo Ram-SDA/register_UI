@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js">
+</head>
+
+<body id="wrapper">
+    <div *ngIf="!name; else userinfo">
+        <form [formGroup]="userDetail" autocomplete="off" (ngSubmit)="registerUser()">
+            <div class="container-fluid">
+                <div class="row">
+                    <br>
+                    <br /><br /><br />
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-3 text-center ">
+                        <div>
+                            <span class="headLar">
+                                <span class="grayclr">DX</span>
+                                <span class="mangoclr">
+                                    <strong>SPOTY</strong>
+                                </span>
+                                <strong>
+                                    <span class="grayclr">.</span>
+                                </strong>
+                            </span>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-3 text-center">
+                        <span class="headsmal">Register in order for you to list or book parking spots</span>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+
+                <div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" formControlName="name" placeholder="Full Name" />
+                                <div class="alert" *ngIf="!userDetail.controls['name'].valid && userDetail.controls['name'].touched">This is required</div>
+                                <input type="number" class="form-control" formControlName="phone" placeholder="Phone number" />
+                                <div class="alert" *ngIf="!userDetail.controls['phone'].valid && userDetail.controls['phone'].touched">This is required</div>
+                                <br />
+                                <input type="text" class="form-control" formControlName="referral" placeholder="Invite referral code(Optional)" />
+                                <br />
+                                <input type="text" class="form-control" formControlName="email" placeholder="Email" />
+                                <div class="alert" *ngIf="!userDetail.controls['email'].valid && userDetail.controls['email'].touched">Please type valid Email</div>
+                                <br />
+                                <input type="password" class="form-control" formControlName="password" placeholder="Password" autocomplete="nope" />
+                                <div class="alert" *ngIf="!userDetail.controls['password'].valid && userDetail.controls['password'].touched">Atleast 6 letters must required</div>
+                                <input type="password" class="form-control" formControlName="conpassword" placeholder="Repeat password" autocomplete="nope"/>
+                                <div class="alert " *ngIf="userDetail.controls.conpassword.errors?.MatchPassword">Password not match</div>
+                                <br />
+                                <select class="form-control" formControlName="bussinessrole">
+                                    <option disabled selected value="" >Bussiness Role</option>
+                                    <option value="3">Parking Lot Owner</option>
+                                    <option value="4">Vehicle Owner</option>
+                                </select>
+                                <div class="alert" *ngIf="!userDetail.controls['bussinessrole'].valid && userDetail.controls['bussinessrole'].touched">This is required</div>
+                                <select class="form-control" formControlName="bussinesstype">
+                                    <option disabled selected value="">Bussiness Type</option>
+                                    <option value="Pay-as-you-occupy">Pay-as-you-occupy</option>
+                                    <option value="Pay-as-you-write">Pay-as-you-write</option>
+                                </select>
+                                <div class="alert" *ngIf="!userDetail.controls['bussinesstype'].valid && userDetail.controls['bussinesstype'].touched">This is required</div>
+                                <br />
+                                <br />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-3">
+                            <button type="submit" [disabled]="!userDetail.valid" class="btn btn-primary btn-block" value="Register">Register</button>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
